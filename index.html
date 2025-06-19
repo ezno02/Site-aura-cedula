@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura - Impacto que transforma</title>
+    <link rel="shortcut icon" type="png" href="/images/aura logo icon.png">
+    <style>
+        /* CSS Integrado */
+
+        /* Estilos globais */
+        @font-face {
+            font-family: "fonte";
+            src: url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.eot");
+            src: url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.eot?#iefix")format("embedded-opentype"),
+                url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.woff2")format("woff2"),
+                url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.woff")format("woff"),
+                url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.ttf")format("truetype"),
+                url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.svg#Kudryashev Display Sans")format("svg");
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "fonte", sans-serif;
+            /* Adicionado um fallback font-family */
+            margin: 0;
+            padding: 0;
+            background-color: #feebfb;
+            /* Cor de fundo padrão para o resto do site */
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: transparent;
+            /* Totalmente transparente no topo */
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            transition: background-color 0.3s ease-in-out;
+            height: 90px;
+        }
+
+        /* Cor do header quando a página é rolada */
+        header.scrolled {
+            background-color: rgba(216, 169, 254, 0.8);
+            /* Fundo escuro semi-transparente quando rolado */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            /* Sombra sutil para destacá-lo */
+            border-bottom: solid 2px #333;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #E91E63;
+            /* Cor da logo permanece a mesma */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Adicionado para que a logo também tenha transição de cor no hover */
+            transition: color 0.3s ease-in-out;
+        }
+
+        /* HOVER PARA A LOGO QUANDO O HEADER ESTÁ TRANSPARENTE (NO TOPO) */
+        .logo:hover {
+            color: #6FE6D7;
+            /* Usando a cor secundária Aura para o hover */
+            cursor: pointer;
+            /* Indica que é clicável */
+        }
+
+
+        .logo img {
+            height: 120px;
+            width: auto;
+            /* Adicione uma transição para o tamanho da imagem da logo no hover */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Efeito no hover da imagem da logo */
+        .logo img:hover {
+            transform: scale(1.05);
+            /* Um pequeno zoom no hover */
+        }
+
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        /* COR PADRÃO E HOVER DOS LINKS QUANDO O HEADER É TRANSPARENTE (NO TOPO) */
+        nav ul li a {
+            color: #333;
+            /* Cor escura para os links quando o header está transparente */
+            text-decoration: none;
+            margin-left: 2.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease-in-out;
+            padding: 8px 0;
+        }
+
+        /* HOVER ESPECÍFICO PARA LINKS QUANDO O HEADER ESTÁ NO TOPO */
+        nav ul li a:hover {
+            color: #6FE6D7;
+            /* Cor ciano vibrante para o hover no topo */
+        }
+
+        /* COR DOS LINKS QUANDO O HEADER ESTÁ ROLADO (BACKGROUND ESCURO) */
+        header.scrolled nav ul li a {
+            color: #333;
+            /* Links brancos sobre o fundo escuro do header */
+        }
+
+        /* HOVER ESPECÍFICO PARA LINKS QUANDO O HEADER ESTÁ ROLADO E ESCURO */
+        header.scrolled nav ul li a:hover {
+            color: #E91E63;
+            /* Rosa vibrante para o hover sobre o fundo escuro/links brancos */
+        }
+
+        /* ESTILO PARA O LINK ATIVO (SEMPRE ROSA, independente do estado do scroll) */
+        nav ul li a.active {
+            color: #E91E63;
+        }
+
+        header.scrolled nav ul li a.active {
+            color: #6FE6D7;
+            /* Rosa vibrante para o hover sobre o fundo escuro/links brancos */
+        }
+
+        /* Hero Section (Primeira Dobra) */
+        #hero {
+            background-image: url('/images/Fundo1.png');
+            /* <-- COLOQUE A URL/CAMINHO DA SUA IMAGEM DE FUNDO AQUI */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
+            overflow: hidden;
+        }
+
+        #hero.solid-bg {
+            background-image: none;
+            background-color: #333;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 1;
+            padding: 3rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Importante para a animação das letras */
+            display: flex;
+            /* Para que os spans fiquem lado a lado */
+            justify-content: center;
+            /* Centraliza as letras no H1 */
+            flex-wrap: wrap;
+            /* Permite que as letras quebrem a linha */
+        }
+
+        .hero-content p {
+            color: #333;
+        }
+
+        /* Estilos para as letras individuais do título do Hero */
+        #hero h1 .letter {
+            display: inline-block;
+            /* Cada letra será um bloco inline para poder aplicar transform */
+            transition: transform 0.1s ease-out;
+            /* Transição rápida para a animação de scroll */
+            will-change: transform;
+            /* Otimização de performance para o navegador */
+        }
+
+        /* Estilo específico para o span de espaço */
+        #hero h1 .space {
+            width: 0.5em;
+            /* Define uma largura para o espaço (ajuste conforme necessário) */
+            display: inline-block;
+            /* Garante que o espaço ocupe seu próprio lugar */
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 3.5rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta {
+            background-color: #E91E63;
+            color: white;
+            border: none;
+            padding: 1.5rem 3.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            text-decoration: none;
+        }
+
+        .cta:hover {
+            background-color: #c2185b;
+            /* Cor de hover do botão CTA */
+            transform: translateY(-2px);
+        }
+
+        /* Quem Somos Section */
+        #quem-somos {
+            padding: 8rem 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 6rem;
+            background-image: url('/images/fundoFinalFinal2.png');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        .quem-somos-content {
+            flex: 1;
+            min-width: 350px;
+            max-width: 550px;
+            text-align: left;
+        }
+
+        .quem-somos-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid #E91E63;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .quem-somos-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+        }
+
+        .quem-somos-image {
+            flex: 1;
+            min-width: 350px;
+            max-width: 550px;
+            height: 450px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .quem-somos-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Nova Seção: A Nossa Ideia */
+        #nossa-ideia {
+            padding: 8rem 4rem;
+            /* Mesmos paddings para manter a consistência visual com outras seções */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 6rem;
+            /* Mesma lacuna */
+            background-image: url('/images/fundoFinal3.png');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            /* Inverte a ordem dos itens para imagem à esquerda e texto à direita */
+            flex-direction: row-reverse;
+        }
+
+        .nossa-ideia-content {
+            flex: 1;
+            min-width: 350px;
+            max-width: 550px;
+            text-align: left;
+            /* Texto à direita, mas alinhado à esquerda dentro do seu container */
+        }
+
+        .nossa-ideia-content h2 {
+            font-size: 3rem;
+            /* Título principal da seção */
+            margin-bottom: 2rem;
+            border-bottom: 4px solid #E91E63;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .nossa-ideia-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+        }
+
+        .nossa-ideia-image {
+            flex: 1;
+            min-width: 350px;
+            max-width: 550px;
+            height: 450px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nossa-ideia-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        /* Nossos Projetos Section (Agora com link/botão) */
+        #nossos-projetos,
+        #nossas-competicoes-call {
+            /* background-color: #feebfb; */
+            border-top: solid 2px black;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 10rem 2rem;
+            position: relative;
+        }
+        #nossos-projetos{
+            background-image: url('/images/fundoFinalFinal2.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .projetos-link-wrapper {
+            font-family: serif;
+            z-index: 1;
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            /* background-color: #E91E63; */
+            padding: 2rem 5rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            border-radius: 60px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background-image: url('/images/botao1certo.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .projetos-link-wrapper:hover {
+            /* background-color: #6FE6D7; */
+            color: black;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .participantes-section {
+            /* border-top: solid 2px #333; */
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .participantes-section .participantes-title {
+            width: 20%;
+            margin: auto;
+            background-color: #c2185b;
+            border-radius: 0.8rem;
+            margin-bottom: 60px;
+            /* border: solid 1px white; */
+        }
+
+        .participantes-title h2 {
+            font-family: serif;
+            border: solid 1px black;
+            border-radius: 0.8rem;
+            color: white;
+        }
+
+        .participantes01 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .participantes01 img {
+            margin-inline: 100px;
+            border-radius: 100%;
+            width: 90px;
+            /* Tamanho da foto do membro */
+            height: 90px;
+        }
+
+        .participantes01 span {
+            display: block;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            color: #333;
+            text-align: center;
+            padding: 3rem 1rem;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .footer-logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .background-footer {
+            background-image: url('/images/background\ rodapé.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Botão Voltar ao Topo */
+        #backToTopBtn {
+            display: none;
+            /* Escondido por padrão */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background-color: #E91E63;
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            /* Começa invisível */
+            pointer-events: none;
+            /* Impede interação quando invisível */
+        }
+
+        #backToTopBtn.show {
+            opacity: 1;
+            /* Torna visível */
+            pointer-events: auto;
+            /* Permite interação */
+        }
+
+        #backToTopBtn:hover {
+            background-color: #c2185b;
+            transform: translateY(-3px);
+        }
+
+        /* Responsividade (Ajustes para as novas proporções) */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                height: auto;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li a {
+                margin-left: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .cta {
+                padding: 1.2rem 3rem;
+                font-size: 1.1rem;
+            }
+
+            #quem-somos,
+            #nossa-ideia {
+                /* Aplicar a mesma regra de flex-direction */
+                flex-direction: column;
+                gap: 3rem;
+                padding: 6rem 2rem;
+            }
+
+            /* Ajuste para a ordem da imagem/texto em telas menores para #nossa-ideia */
+            #nossa-ideia .nossa-ideia-image {
+                order: -1;
+                /* Coloca a imagem acima do texto em telas menores */
+            }
+
+            .quem-somos-content,
+            .quem-somos-image,
+            .nossa-ideia-content,
+            .nossa-ideia-image {
+                min-width: unset;
+                max-width: 100%;
+            }
+
+            .quem-somos-content h2,
+            .nossa-ideia-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .quem-somos-content p,
+            .nossa-ideia-content p {
+                font-size: 1rem;
+            }
+
+            .quem-somos-image,
+            .nossa-ideia-image {
+                height: 350px;
+            }
+
+            .projetos-link-wrapper {
+                font-size: 2rem;
+                padding: 1.5rem 4rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            #backToTopBtn {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .cta {
+                padding: 1rem 2.5rem;
+                font-size: 1rem;
+            }
+
+            .quem-somos-content h2,
+            .nossa-ideia-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .quem-somos-image,
+            .nossa-ideia-image {
+                height: 300px;
+            }
+
+            .projetos-link-wrapper {
+                font-size: 1.5rem;
+                padding: 1.2rem 3rem;
+            }
+
+            #backToTopBtn {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="/images/aura logo icon.png" alt="Aura" id="imgLogo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#quem-somos">Quem somos</a></li>
+                <li><a href="#nossa-ideia">Nossa Ideia</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="competicoes.html">Competições</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Criamos sistemas com impacto real</h1>
+            <p>Se não te emociona, ainda não está pronto.</p>
+            <a href="#quem-somos" class="cta">Saiba Mais</a>
+        </div>
+    </section>
+
+    <section id="quem-somos">
+        <div class="quem-somos-content">
+            <h2>Quem somos</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum sapien gravida.</p>
+            <p>Mais texto sobre quem somos, se necessário, para preencher este espaço.</p>
+        </div>
+        <div class="quem-somos-image">
+            <img src="https://via.placeholder.com/400x400/feebfb/666666?text=IMAGEM+AQUI" alt="Imagem Quem Somos">
+        </div>
+    </section>
+
+    <section id="nossa-ideia">
+        <div class="nossa-ideia-image">
+            <img src="https://via.placeholder.com/400x400/feebfb/666666?text=IMAGEM+AQUI" alt="Imagem Nossa Ideia">
+        </div>
+        <div class="nossa-ideia-content">
+            <h2>Nossa Ideia</h2>
+            <p>Pellentesque cursus quam in leo varius, non semper tortor placerat. Sed fringilla diam in porttitor
+                tempor. Cras finibus est eget mi ornare, mollis vehicula urna bibendum. Pellentesque habitant morbi
+                tristique senectus et netus et malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+                condimentum sapien gravida.</p>
+            <p>Um segundo parágrafo para dar a sensação de mais conteúdo e preencher o espaço. Aqui você pode expandir
+                sobre a visão e missão da Aura.</p>
+        </div>
+    </section>
+    <section id="nossos-projetos">
+        <a href="projetos.html" class="projetos-link-wrapper">
+            Nossos projetos
+        </a>
+    </section>
+    <div class="background-footer">
+        <section id="nossas-competicoes-call">
+            <a href="competicoes.html" class="projetos-link-wrapper" id="botao-competicoes">
+                Competições
+            </a>
+        </section>
+
+        <section class="participantes-section">
+            <div class="participantes-title">
+                <h2>Participantes</h2>
+            </div>
+            <div class="participantes01">
+                <div class="participante">
+                    <img src="/images/EnzoFoto.png" alt="parti1">
+                    <span>Enzo Bueno</span>
+                </div>
+                <div class="participante">
+                    <img src="" alt="part2">
+                </div>
+                <div class="participante">
+                    <img src="/images/JoaoVictorFoto.png" alt="part3">
+                    <span>Joao Victor</span>
+                </div>
+                <div class="participante">
+                    <img src="" alt="part4">
+                </div>
+                <div class="participante">
+                    <img src="/images/Joao2.png" alt="part5">
+                    <span>Joao Sardela</span>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-logo-placeholder">
+                <img src="/images/aura logo icon.png" alt="Aura Logo Footer">
+            </div>
+            <p>&copy; 2025 Aura - Impacto que transforma.</p>
+        </footer>
+    </div>
+
+    <button id="backToTopBtn" title="Voltar ao Topo">&#x2191;</button>
+
+    <script>
+        // JavaScript Integrado
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroSection = document.getElementById('hero');
+            const header = document.querySelector('header');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const backToTopBtn = document.getElementById('backToTopBtn');
+
+            // --- CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
+            const heroTitle = document.querySelector('#hero h1');
+            let letters = [];
+
+            if (heroTitle) {
+                const text = heroTitle.textContent;
+                heroTitle.innerHTML = ''; // Limpa o conteúdo original
+
+                // Divide a string em caracteres individuais, incluindo espaços
+                text.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    if (char === ' ') {
+                        span.classList.add('space'); // Adiciona uma classe específica para espaços
+                        span.innerHTML = '&nbsp;'; // Usa um espaço não quebravel para manter a largura
+                    } else {
+                        span.classList.add('letter');
+                        span.textContent = char;
+                        letters.push(span); // Apenas letras são adicionadas à lista para animação
+                    }
+                    heroTitle.appendChild(span);
+                });
+
+                // Função para animar as letras
+                function animateLettersOnScroll() {
+                    const scrollPosition = window.scrollY;
+                    const heroHeight = heroSection.offsetHeight;
+                    // Começa a animar quando o scroll passa metade do hero
+                    const triggerPoint = heroHeight * 0.5;
+
+                    const scrollFactor = Math.min(1, Math.max(0, (scrollPosition - triggerPoint) / (heroHeight - triggerPoint)));
+
+                    letters.forEach((letter, index) => {
+                        let translateY = 0;
+                        let translateX = 0;
+
+                        if (index % 2 === 0) {
+                            translateY = -scrollFactor * (5 + (index * 0.5));
+                        } else {
+                            translateY = scrollFactor * (5 + (index * 0.5));
+                        }
+
+                        const midIndex = Math.floor(letters.length / 2);
+                        const distanceToCenter = Math.abs(index - midIndex);
+                        translateX = scrollFactor * (distanceToCenter * 0.5);
+
+                        if (index < midIndex) {
+                            translateX *= -1;
+                        }
+
+                        letter.style.transform = `translate(${translateX}px, ${translateY}px)`;
+                    });
+                }
+
+                window.addEventListener('scroll', animateLettersOnScroll);
+                animateLettersOnScroll(); // Chame uma vez no carregamento
+            }
+            // --- FIM DO CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
+
+
+            // Função para mudar o background do hero ao rolar
+            window.addEventListener('scroll', function () {
+                if (window.scrollY >= heroSection.offsetHeight - 150) {
+                    heroSection.classList.add('solid-bg');
+                } else {
+                    heroSection.classList.remove('solid-bg');
+                }
+
+                // Mudar o background do header e a cor dos links
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Ativar link de navegação conforme a seção visível
+                let current = '';
+                const offset = header.offsetHeight + 80;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Garante que a seção "Hero" seja detectada corretamente quando no topo
+                    if (section.id === 'hero' && pageYOffset < sectionHeight - offset) {
+                        current = 'hero';
+                    }
+                    // Para as outras seções
+                    else if (pageYOffset >= sectionTop - offset && pageYOffset < sectionTop + sectionHeight - offset) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    // Verifica se o href começa com '#' (links internos)
+                    if (link.getAttribute('href').startsWith('#')) {
+                        if (link.getAttribute('href').includes(current)) {
+                            link.classList.add('active');
+                        }
+                    } else { // Para links externos ou para outras páginas
+                        if (link.href === window.location.href) { // Verifica se é a página atual
+                            link.classList.add('active');
+                        } else if (link.href.endsWith(window.location.pathname) && window.location.pathname.includes(link.getAttribute('href'))) {
+                            // Para links como "competicoes.html" quando em "competicoes.html"
+                            link.classList.add('active');
+                        }
+                    }
+                });
+
+                // Lógica para o botão Voltar ao Topo
+                if (window.scrollY > 300) { // Mostra o botão após rolar 300px
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            // Adiciona classe 'active' ao link da primeira seção (Home/Hero) ao carregar a página
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === '#hero') {
+                    link.classList.add('active');
+                }
+            });
+
+            // Garante que o header comece transparente e com links escuros se a página for carregada no topo
+            if (window.scrollY === 0) {
+                header.classList.remove('scrolled');
+            }
+
+            // Event listener para o botão de voltar ao topo
+            backToTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Rolagem suave
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura - Contato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Variáveis de Cores da Aura */
+        :root {
+            --primary-bg-color: #feebfb;
+            --accent-color: #E91E63;
+            --text-color: #333;
+            --light-text-color: #f8f8f8;
+            --card-bg-color: rgba(255, 255, 255, 0.9); /* Um pouco mais opaco para o formulário */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos Globais e Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-bg-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Header (consistente com a página inicial) */
+        header {
+            background-color: var(--primary-bg-color);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* box-shadow: 0 2px 10px var(--shadow-color); */
+            position: sticky; /* Fixa o header no topo */
+            top: 0;
+            z-index: 1000; /* Garante que o header fique acima de outros elementos */
+            transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+        .logo-img { /* Estilo para o logo de imagem */
+            height: 120px; /* Altura do logo */
+            width: auto; /* Mantém a proporção */
+            transition: height 0.3s ease; /* Transição para suavizar mudança de tamanho */
+        }
+
+        /* Classe para o header quando scrollado */
+        header.scrolled-header {
+            background-color: rgba(216, 169, 254, 0.8);
+            border-bottom: solid 2px #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Content - Contact Section */
+        .contact-section {
+            padding: 4rem 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem; /* Espaçamento entre os blocos */
+            max-width: 1200px;
+            margin: 0 auto; /* Centraliza a seção */
+        }
+
+        .contact-section h1 {
+            font-size: 3.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 1px 1px 3px var(--shadow-color);
+        }
+
+        .contact-intro {
+            font-size: 1.3rem;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens quebrem linha */
+            justify-content: center;
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .contact-form, .contact-info-block {
+            background-color: var(--card-bg-color);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            padding: 3rem;
+            box-sizing: border-box;
+            flex: 1; /* Ocupa o espaço disponível */
+            min-width: 300px; /* Largura mínima para ser legível */
+        }
+
+        .contact-form {
+            max-width: 600px; /* Limita a largura do formulário */
+        }
+
+        .contact-form h2, .contact-info-block h2 {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Permite redimensionar apenas verticalmente */
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            display: block; /* Ocupa a largura total para centralizar */
+            width: fit-content; /* Se ajusta ao conteúdo */
+            margin: 2rem auto 0 auto; /* Centraliza o botão */
+        }
+
+        .submit-button:hover {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        .contact-info-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centraliza verticalmente o conteúdo */
+            align-items: center; /* Centraliza horizontalmente o conteúdo */
+            text-align: center;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.15rem;
+            color: var(--text-color);
+            width: 100%; /* Permite centralizar o flexbox */
+            justify-content: center; /* Centraliza os itens dentro do contact-item */
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            width: 40px; /* Largura fixa para ícones para alinhamento */
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #c2185b;
+        }
+
+        /* Footer (consistente com a página inicial) */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .footer-logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .contact-container {
+                flex-direction: column; /* Coloca os blocos um abaixo do outro em telas menores */
+                align-items: center;
+            }
+
+            .contact-form, .contact-info-block {
+                width: 100%;
+                max-width: 500px; /* Limita a largura para melhor leitura */
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem 5%;
+            }
+            .logo-img {
+                margin-bottom: 1rem;
+            }
+            header.scrolled-header { /* Ajuste para responsividade do header scrollado */
+                padding: 0.8rem 5%;
+            }
+            header.scrolled-header .logo-img {
+                height: 25px; /* Logo ainda menor em mobile quando scrollado */
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            .contact-section h1 {
+                font-size: 3rem;
+            }
+            .contact-intro {
+                font-size: 1.1rem;
+            }
+            .contact-form, .contact-info-block {
+                padding: 2rem;
+            }
+            .contact-form h2, .contact-info-block h2 {
+                font-size: 1.8rem;
+            }
+            .submit-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+            .contact-item {
+                font-size: 1rem;
+                flex-direction: column; /* Alinha ícone e texto verticalmente */
+                gap: 0.5rem;
+            }
+            .contact-item i {
+                font-size: 1.5rem;
+                width: auto;
+            }
+            .social-links {
+                margin-top: 1.5rem;
+                gap: 1rem;
+            }
+            .social-links a {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-section h1 {
+                font-size: 2.5rem;
+            }
+            .contact-intro {
+                font-size: 1rem;
+            }
+            .contact-form, .contact-info-block {
+                padding: 1.5rem;
+            }
+            .contact-form h2, .contact-info-block h2 {
+                font-size: 1.5rem;
+            }
+            .form-group label {
+                font-size: 0.9rem;
+            }
+            .form-group input, .form-group textarea, .form-group select {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            .submit-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <a href="index.html" class="logo">
+            <img src="/images/aura logo icon.png" alt="Logo Aura" class="logo-img"> </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="competicoes.html">Competições</a></li> 
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-section">
+        <h1>Fale Conosco</h1>
+        <p class="contact-intro">
+            Queremos ouvir a sua ideia e transformá-la em um sistema que cause impacto. 
+            Preencha o formulário abaixo ou utilize os nossos canais de contato direto. 
+            Estamos prontos para criar algo emocionante com você!
+        </p>
+
+        <div class="contact-container">
+            <div class="contact-form">
+                <h2>Envie sua Mensagem</h2>
+                <form action="#" method="POST" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Selecione um assunto</option>
+                            <option value="orcamento">Solicitação de Orçamento</option>
+                            <option value="parceria">Proposta de Parceria</option>
+                            <option value="suporte">Suporte / Dúvida Técnica</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="outros">Outros Assuntos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Sua Mensagem</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Descreva sua ideia ou necessidade aqui..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar Mensagem</button>
+                </form>
+                <div id="formMessage" style="margin-top: 1.5rem; text-align: center; font-weight: bold;"></div>
+            </div>
+
+            <div class="contact-info-block">
+                <h2>Canais de Contato</h2>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:contato@aura.com.br">contato@aura.com.br</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+5515999999999">+55 (15) 99999-9999</a> </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Rua da Inovação, 123 - Cidade Tech, SP</span>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/aura" target="_blank" aria-label="LinkedIn da Aura"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/aura-devs" target="_blank" aria-label="GitHub da Aura"><i class="fab fa-github-square"></i></a>
+                    <a href="https://www.instagram.com/aura_tech" target="_blank" aria-label="Instagram da Aura"><i class="fab fa-instagram-square"></i></a>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-logo-placeholder">
+            <img src="/images/aura logo icon.png" alt="Aura Logo Footer">
+        </div>
+        <p>&copy; 2025 Aura - Impacto que transforma.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+            const mainHeader = document.getElementById('mainHeader'); // Obter o cabeçalho
+
+            // Função para verificar a posição do scroll e ajustar o header
+            function handleScroll() {
+                if (window.scrollY > 50) { // Se o scroll vertical for maior que 50 pixels
+                    mainHeader.classList.add('scrolled-header');
+                } else {
+                    mainHeader.classList.remove('scrolled-header');
+                }
+            }
+
+            // Adiciona o event listener para o scroll
+            window.addEventListener('scroll', handleScroll);
+
+            // Chama a função uma vez ao carregar a página, caso o usuário recarregue no meio do scroll
+            handleScroll();
+
+            // Lógica de envio do formulário (simulada)
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                // Coletar dados do formulário
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                // Validação básica (além do HTML5 required)
+                if (!name || !email || !subject || !message) {
+                    formMessage.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                    formMessage.style.color = 'red';
+                    return;
+                }
+
+                formMessage.textContent = 'Enviando mensagem...';
+                formMessage.style.color = 'var(--text-color)';
+
+                // Simular um atraso de envio
+                setTimeout(() => {
+                    const success = Math.random() > 0.1; // Simula 90% de chance de sucesso
+
+                    if (success) {
+                        formMessage.textContent = 'Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.';
+                        formMessage.style.color = 'green';
+                        contactForm.reset(); // Limpa o formulário
+                    } else {
+                        formMessage.textContent = 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.';
+                        formMessage.style.color = 'red';
+                    }
+                }, 1500); // Atraso de 1.5 segundos
+            });
+        });
+    </script>
+</body>
+</html>
