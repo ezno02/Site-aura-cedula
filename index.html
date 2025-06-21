@@ -34,6 +34,105 @@
             line-height: 1.6;
         }
 
+        /* Estilos para a Tela de Loading */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #feebfb;
+            /* Cor de fundo da Aura */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Garante que fique acima de tudo */
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+            /* Transição para o fade out */
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            /* Impede cliques em elementos invisíveis */
+        }
+
+        .loading-logo {
+            height: 120px;
+            /* Tamanho maior para o logo no loading */
+            width: auto;
+            animation: pulse 2s infinite ease-in-out;
+            /* Animação para o logo */
+            margin-bottom: 2rem;
+        }
+
+        /* Animação de pulso para o logo */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .spinner {
+            border: 8px solid rgba(233, 30, 99, 0.2);
+            /* Borda clara do spinner */
+            border-top: 8px solid #E91E63;
+            /* Borda superior colorida */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            /* Animação de rotação */
+            margin-bottom: 1.5rem;
+        }
+
+        /* Animação de rotação para o spinner */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* Considerações para Mobile */
+        @media (max-width: 768px) {
+            .loading-logo {
+                height: 90px;
+            }
+
+            .spinner {
+                width: 50px;
+                height: 50px;
+                border-width: 6px;
+            }
+
+            .loading-text {
+                font-size: 1.2rem;
+            }
+        }
+
         /* Header */
         header {
             background-color: transparent;
@@ -366,7 +465,8 @@
             padding: 10rem 2rem;
             position: relative;
         }
-        #nossos-projetos{
+
+        #nossos-projetos {
             background-image: url('/images/fundoFinalFinal2.png');
             background-size: cover;
             background-position: center;
@@ -645,6 +745,13 @@
 </head>
 
 <body>
+
+    <div id="loading-screen">
+        <img src="/images/aura logo icon.png" alt="Logo Aura" class="loading-logo">
+        <div class="spinner"></div>
+        <p class="loading-text">Carregando a experiência Aura...</p>
+    </div>
+
     <header>
         <div class="logo">
             <a href="index.html">
@@ -744,13 +851,42 @@
     <button id="backToTopBtn" title="Voltar ao Topo">&#x2191;</button>
 
     <script>
-        // JavaScript Integrado
         document.addEventListener('DOMContentLoaded', function () {
             const heroSection = document.getElementById('hero');
             const header = document.querySelector('header');
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav ul li a');
             const backToTopBtn = document.getElementById('backToTopBtn');
+
+            // --- INÍCIO DO CÓDIGO DA TELA DE LOADING (Sempre aparece) ---
+            const loadingScreen = document.getElementById('loading-screen');
+
+            // Adiciona um atraso mínimo para garantir que a animação inicial seja vista
+            const minDisplayTime = 1500; // 1.5 segundos
+            const startTime = Date.now();
+
+            // Sempre mostra a tela de loading
+            if (loadingScreen) { // Garante que o elemento existe antes de tentar manipulá-lo
+                loadingScreen.style.display = 'flex'; // Garante que esteja visível para animação
+            }
+
+            window.addEventListener('load', function () {
+                // Conteúdo principal carregado. Agora, espere o tempo mínimo
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = minDisplayTime - elapsedTime;
+
+                setTimeout(() => {
+                    if (loadingScreen) {
+                        loadingScreen.classList.add('hidden'); // Inicia o fade out
+                        // Remover completamente do DOM após a transição para liberar recursos
+                        loadingScreen.addEventListener('transitionend', function () {
+                            loadingScreen.remove();
+                        }, { once: true }); // Remove o listener após uma única execução
+                    }
+                }, Math.max(0, remainingTime)); // Garante que o atraso não seja negativo
+            });
+            // --- FIM DO CÓDIGO DA TELA DE LOADING ---
+
 
             // --- CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
             const heroTitle = document.querySelector('#hero h1');
@@ -813,22 +949,26 @@
 
             // Função para mudar o background do hero ao rolar
             window.addEventListener('scroll', function () {
-                if (window.scrollY >= heroSection.offsetHeight - 150) {
-                    heroSection.classList.add('solid-bg');
-                } else {
-                    heroSection.classList.remove('solid-bg');
+                if (heroSection) { // Verifica se heroSection existe
+                    if (window.scrollY >= heroSection.offsetHeight - 150) {
+                        heroSection.classList.add('solid-bg');
+                    } else {
+                        heroSection.classList.remove('solid-bg');
+                    }
                 }
 
                 // Mudar o background do header e a cor dos links
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+                if (header) { // Verifica se header existe
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
                 }
 
                 // Ativar link de navegação conforme a seção visível
                 let current = '';
-                const offset = header.offsetHeight + 80;
+                const offset = header ? header.offsetHeight + 80 : 80; // Usa 80px como fallback se header não existir
 
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
@@ -861,10 +1001,12 @@
                 });
 
                 // Lógica para o botão Voltar ao Topo
-                if (window.scrollY > 300) { // Mostra o botão após rolar 300px
-                    backToTopBtn.classList.add('show');
-                } else {
-                    backToTopBtn.classList.remove('show');
+                if (backToTopBtn) { // Verifica se o botão existe
+                    if (window.scrollY > 300) { // Mostra o botão após rolar 300px
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                    }
                 }
             });
 
@@ -876,17 +1018,21 @@
             });
 
             // Garante que o header comece transparente e com links escuros se a página for carregada no topo
-            if (window.scrollY === 0) {
-                header.classList.remove('scrolled');
+            if (header) { // Verifica se header existe
+                if (window.scrollY === 0) {
+                    header.classList.remove('scrolled');
+                }
             }
 
             // Event listener para o botão de voltar ao topo
-            backToTopBtn.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth' // Rolagem suave
+            if (backToTopBtn) { // Verifica se o botão existe
+                backToTopBtn.addEventListener('click', function () {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // Rolagem suave
+                    });
                 });
-            });
+            }
         });
     </script>
 </body>
