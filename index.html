@@ -363,12 +363,18 @@
             border-bottom: 4px solid #E91E63;
             padding-bottom: 12px;
             display: inline-block;
+            animation: scrollAnimationStE 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
         }
 
         .quem-somos-content p {
             font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 1.8rem;
+            animation: scrollAnimationStE 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
         }
 
         .quem-somos-image {
@@ -382,6 +388,9 @@
             justify-content: center;
             overflow: hidden;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            animation: scrollAnimationEtSY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
         }
 
         .quem-somos-image img {
@@ -424,12 +433,18 @@
             border-bottom: 4px solid #E91E63;
             padding-bottom: 12px;
             display: inline-block;
+            animation: scrollAnimationStE 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
         }
 
         .nossa-ideia-content p {
             font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 1.8rem;
+            animation: scrollAnimationStE 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
         }
 
         .nossa-ideia-image {
@@ -443,6 +458,9 @@
             justify-content: center;
             overflow: hidden;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            animation: scrollAnimationEtS 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
         }
 
         .nossa-ideia-image img {
@@ -452,6 +470,88 @@
             display: block;
         }
 
+        /* Seção de Valores (ou Serviços/Abordagem) */
+        .values-section {
+            padding: 6rem 3rem;
+            background-color: #feebfb;
+            text-align: center;
+        }
+
+        .values-section h2 {
+            font-size: 3rem;
+            color: #E91E63;
+            margin-bottom: 3rem;
+            font-family: "fonte", sans-serif;
+            animation: scrollAnimationStE 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .animatioStE-value{
+            animation: scrollAnimationStE 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
+        .animatioEtS-value{
+            animation: scrollAnimationEtS 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
+        .animatioEtSY-value{
+            animation: scrollAnimationEtSY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
+        .animatioStEY-value{
+            animation: scrollAnimationStEY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
+
+        .value-card i {
+            font-size: 3.5rem;
+            color: #E91E63;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+            animation: scrollAnimationEtSY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
+
+        .value-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            animation: scrollAnimationStEY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -10% cover 30%;
+        }
 
         /* Nossos Projetos Section (Agora com link/botão) */
         #nossos-projetos,
@@ -616,6 +716,62 @@
             transform: translateY(-3px);
         }
 
+        @keyframes scrollAnimationStE {
+            from {
+                opacity: 0.1;
+                translate: -10vw 0;
+                scale: 0.6;
+            }
+
+            to {
+                opacity: 1;
+                translate: 0 0;
+                scale: 1;
+            }
+        }
+
+        @keyframes scrollAnimationEtS {
+            from {
+                opacity: 0.1;
+                translate: 10vw 0;
+                scale: 0.6;
+            }
+
+            to {
+                opacity: 1;
+                translate: 0 0;
+                scale: 1;
+            }
+        }
+
+        @keyframes scrollAnimationEtSY {
+            from {
+                opacity: 0.1;
+                translate: 0 20vh;
+                scale: 0.6;
+            }
+
+            to {
+                opacity: 1;
+                translate: 0 0;
+                scale: 1;
+            }
+        }
+
+        @keyframes scrollAnimationStEY {
+            from {
+                opacity: 0;
+                translate: 0 -20vh;
+                scale: 0.6;
+            }
+
+            to {
+                opacity: 1;
+                translate: 0 0;
+                scale: 1;
+            }
+        }
+
         /* Responsividade (Ajustes para as novas proporções) */
         @media (max-width: 768px) {
             header {
@@ -746,12 +902,6 @@
 
 <body>
 
-    <div id="loading-screen">
-        <img src="/images/aura logo icon.png" alt="Logo Aura" class="loading-logo">
-        <div class="spinner"></div>
-        <p class="loading-text">Carregando a experiência Aura...</p>
-    </div>
-
     <header>
         <div class="logo">
             <a href="index.html">
@@ -803,6 +953,49 @@
                 sobre a visão e missão da Aura.</p>
         </div>
     </section>
+
+    <section id="values" class="values-section">
+        <h2>Nossos Valores</h2>
+        <div class="values-grid">
+            <div class="value-card animatioStE-value">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Somos Poucos</h3>
+                <p>Nosso maior valor, é a seleção. sem os melhores, nao é possivel fazer o melhor. sem o melhor, não
+                    existe Aura.</p>
+            </div>
+            <div class="value-card animatioStEY-value">
+                <i class="fas fa-users"></i>
+                <h3>Não temos medo em sermos os Melhores</h3>
+                <p>Um sistema Aura, não é só um sistema, é o melhor sistema. sem mediocridade, os melhores fazem o
+                    melhor.</p>
+            </div>
+            <div class="value-card animatioEtS-value">
+                <i class="fas fa-heart"></i>
+                <h3>Nossa Alma</h3>
+                <p>Nosso objetivo não é criar sistemas, é criar mundos. Em nossos sistemas existe Alma, Compaixão, e
+                    muito suor para entregar o melhor.</p>
+            </div>
+            <div class="value-card animatioStE-value">
+                <i class="fas fa-cogs"></i>
+                <h3>Excelência no que Fazemos</h3>
+                <p>Profissionais e equipamentos de ponta. Cada linha de codigo em nossos sistemas, é feita com
+                    excelência e perfeição.</p>
+            </div>
+            <div class="value-card animatioEtSY-value">
+                <i class="fas fa-cogs"></i>
+                <h3>Compromisso com o usuario</h3>
+                <p>Compromisso não é só responsabilidade. Compromisso é qualidade, performance e segurança em cada
+                    sistema, entregando confiabilidade e robustes.</p>
+            </div>
+            <div class="value-card animatioEtS-value">
+                <i class="fas fa-cogs"></i>
+                <h3>Tempo</h3>
+                <p>Comprimimos o tempo, cada segundo importa quando o assunto é criar sistemas imensos. Em poucas
+                    semanas, fazemos os trabalhos de anos, e em poucos meses o trabalho de decadas.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="nossos-projetos">
         <a href="projetos.html" class="projetos-link-wrapper">
             Nossos projetos
@@ -857,36 +1050,6 @@
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav ul li a');
             const backToTopBtn = document.getElementById('backToTopBtn');
-
-            // --- INÍCIO DO CÓDIGO DA TELA DE LOADING (Sempre aparece) ---
-            const loadingScreen = document.getElementById('loading-screen');
-
-            // Adiciona um atraso mínimo para garantir que a animação inicial seja vista
-            const minDisplayTime = 1500; // 1.5 segundos
-            const startTime = Date.now();
-
-            // Sempre mostra a tela de loading
-            if (loadingScreen) { // Garante que o elemento existe antes de tentar manipulá-lo
-                loadingScreen.style.display = 'flex'; // Garante que esteja visível para animação
-            }
-
-            window.addEventListener('load', function () {
-                // Conteúdo principal carregado. Agora, espere o tempo mínimo
-                const elapsedTime = Date.now() - startTime;
-                const remainingTime = minDisplayTime - elapsedTime;
-
-                setTimeout(() => {
-                    if (loadingScreen) {
-                        loadingScreen.classList.add('hidden'); // Inicia o fade out
-                        // Remover completamente do DOM após a transição para liberar recursos
-                        loadingScreen.addEventListener('transitionend', function () {
-                            loadingScreen.remove();
-                        }, { once: true }); // Remove o listener após uma única execução
-                    }
-                }, Math.max(0, remainingTime)); // Garante que o atraso não seja negativo
-            });
-            // --- FIM DO CÓDIGO DA TELA DE LOADING ---
-
 
             // --- CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
             const heroTitle = document.querySelector('#hero h1');

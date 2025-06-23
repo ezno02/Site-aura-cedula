@@ -1,64 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura - Nossos Projetos</title>
     <style>
         /* Estilos Globais e Reset */
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: auto; /* Permite a rolagem horizontal */
-            overflow-y: hidden; /* Esconde a rolagem vertical se houver */
-            white-space: nowrap; /* Garante que os elementos filhos não quebrem linha */
-            scroll-behavior: smooth; /* Rolagem suave para navegação (se usada por links) */
-            background-color: #feebfb; /* Fundo padrão da página de projetos */
+            overflow-x: auto;
+            /* Permite a rolagem horizontal */
+            overflow-y: hidden;
+            /* Esconde a rolagem vertical se houver */
+            white-space: nowrap;
+            /* Garante que os elementos filhos não quebrem linha */
+            scroll-behavior: smooth;
+            /* Rolagem suave para navegação (se usada por links) */
+            background-color: #feebfb;
+            /* Fundo padrão da página de projetos */
             color: #333;
-            height: 100vh; /* Garante que o body ocupe 100% da altura para o scroll horizontal */
+            height: 100vh;
+            /* Garante que o body ocupe 100% da altura para o scroll horizontal */
         }
 
         /* Estilo para cada Seção de Projeto */
         .project-section {
-            display: inline-flex; /* Permite que as seções fiquem lado a lado sem quebra de linha */
-            flex-direction: column; /* Conteúdo em coluna dentro da seção */
+            display: inline-flex;
+            /* Permite que as seções fiquem lado a lado sem quebra de linha */
+            flex-direction: column;
+            /* Conteúdo em coluna dentro da seção */
             justify-content: center;
             align-items: center;
-            padding: 4rem; /* Espaçamento interno */
-            box-sizing: border-box; /* Inclui padding na largura/altura */
-            background-color: #feebfb; /* Cor de fundo para cada seção (principalmente para preencher lacunas) */
+            padding: 4rem;
+            /* Espaçamento interno */
+            box-sizing: border-box;
+            /* Inclui padding na largura/altura */
+            background-color: #feebfb;
+            /* Cor de fundo para cada seção (principalmente para preencher lacunas) */
             text-align: center;
-            white-space: normal; /* Permite que o conteúdo de texto quebre linha */
-            vertical-align: top; /* Alinha no topo se houver alguma diferença de altura */
-            width: 100vw; /* Cada seção ocupa 100% da largura da viewport */
-            height: 100vh; /* Cada seção ocupa 100% da altura da viewport */
+            white-space: normal;
+            /* Permite que o conteúdo de texto quebre linha */
+            vertical-align: top;
+            /* Alinha no topo se houver alguma diferença de altura */
+            width: 100vw;
+            /* Cada seção ocupa 100% da largura da viewport */
+            height: 100vh;
+            /* Cada seção ocupa 100% da altura da viewport */
         }
 
         /* Ajuste para o project-content para abrigar texto e ter imagem de fundo */
         .project-content {
             max-width: 800px;
-            padding: 3rem; /* Aumentado o padding para acomodar a imagem de fundo */
+            padding: 3rem;
+            /* Aumentado o padding para acomodar a imagem de fundo */
             border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Sombra um pouco mais forte */
-            
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            /* Sombra um pouco mais forte */
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            
+
             height: fit-content;
-            min-height: 70vh; /* Garante uma altura mínima para o quadrado do projeto */
+            min-height: 70vh;
+            /* Garante uma altura mínima para o quadrado do projeto */
             box-sizing: border-box;
 
             /* Propriedades para a imagem de fundo */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative; /* Necessário para posicionar o overlay */
-            color: white; /* Texto branco sobre a imagem de fundo (ajuste se a imagem for clara) */
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Sombra para o texto para melhor legibilidade */
-            transition: background-image 0.5s ease; /* Transição suave para a imagem de fundo */
+            position: relative;
+            /* Necessário para posicionar o overlay */
+            color: white;
+            /* Texto branco sobre a imagem de fundo (ajuste se a imagem for clara) */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            /* Sombra para o texto para melhor legibilidade */
+            transition: background-image 0.5s ease;
+            /* Transição suave para a imagem de fundo */
         }
 
         /* Overlay para o background do project-content para melhorar a legibilidade do texto */
@@ -69,21 +93,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Camada escura semi-transparente */
-            border-radius: 15px; /* Manter o border-radius do pai */
-            z-index: 0; /* Coloca o overlay atrás do conteúdo */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Camada escura semi-transparente */
+            border-radius: 15px;
+            /* Manter o border-radius do pai */
+            z-index: 0;
+            /* Coloca o overlay atrás do conteúdo */
         }
 
-        .project-content > * {
-            position: relative; /* Garante que o conteúdo fique acima do overlay */
+        .project-content>* {
+            position: relative;
+            /* Garante que o conteúdo fique acima do overlay */
             z-index: 1;
         }
 
         .project-content h1 {
             font-size: 3.5rem;
-            color: #E91E63; /* Mantido o tom rosa para o título */
+            color: #E91E63;
+            /* Mantido o tom rosa para o título */
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.9); /* Sombra mais forte para o título */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+            /* Sombra mais forte para o título */
         }
 
         .project-content p {
@@ -91,7 +121,8 @@
             line-height: 1.7;
             margin-bottom: 2rem;
             text-align: center;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Sombra para o texto */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            /* Sombra para o texto */
         }
 
         /* Botão para Acessar o Projeto */
@@ -109,7 +140,8 @@
             transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
             text-decoration: none;
             display: inline-block;
-            margin-top: 1rem; /* Espaçamento entre o texto/imagem e o botão */
+            margin-top: 1rem;
+            /* Espaçamento entre o texto/imagem e o botão */
         }
 
         .project-cta:hover {
@@ -132,26 +164,29 @@
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
             z-index: 101;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .home-button:hover {
             background-color: #c2185b;
             transform: translateY(-2px);
         }
-        
+
         /* Responsividade */
         @media (max-width: 1024px) {
             .project-content h1 {
                 font-size: 3rem;
             }
+
             .project-content p {
                 font-size: 1.1rem;
             }
+
             .project-cta {
                 font-size: 1.1rem;
                 padding: 0.8rem 2rem;
             }
+
             .project-content {
                 min-height: 65vh;
             }
@@ -161,20 +196,25 @@
             .project-section {
                 padding: 2rem;
             }
+
             .project-content {
                 padding: 1.5rem;
                 min-height: 60vh;
             }
+
             .project-content h1 {
                 font-size: 2.2rem;
             }
+
             .project-content p {
                 font-size: 0.95rem;
             }
+
             .project-cta {
                 font-size: 1rem;
                 padding: 0.7rem 1.8rem;
             }
+
             .home-button {
                 top: 1rem;
                 left: 1rem;
@@ -187,16 +227,20 @@
             .project-section {
                 padding: 1rem;
             }
+
             .project-content {
                 padding: 1rem;
                 min-height: 55vh;
             }
+
             .project-content h1 {
                 font-size: 1.8rem;
             }
+
             .project-content p {
                 font-size: 0.9rem;
             }
+
             .project-cta {
                 font-size: 0.9rem;
                 padding: 0.6rem 1.5rem;
@@ -204,6 +248,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <a href="index.html" class="home-button">Home</a>
@@ -211,38 +256,50 @@
     <section class="project-section" id="project1" data-background="/images/PersonalTecLogo.png">
         <div class="project-content">
             <h1>PersonalTec</h1>
-            <p>É um aplicativo mobile que funciona como personal Trainer. Com ele, você pode ter a ajuda profissional no conforto de seus fones de ouvido, em casa, ou na academia. O PersonalTec vai te ajudar, o PersonalTec usa Inteligencia artificial para criar planilhas de exercicios, motivar o usuario, e criar planos alimentares. PersonalTec, seu treino Sua voz</p>
+            <p>É um aplicativo mobile que funciona como personal Trainer. Com ele, você pode ter a ajuda profissional no
+                conforto de seus fones de ouvido, em casa, ou na academia. O PersonalTec vai te ajudar, o PersonalTec
+                usa Inteligencia artificial para criar planilhas de exercicios, motivar o usuario, e criar planos
+                alimentares. PersonalTec, seu treino Sua voz</p>
             <a href="https://personaltec-25d3c.web.app" class="project-cta">Ver Projeto</a>
         </div>
     </section>
 
-    <section class="project-section" id="project2" data-background="https://via.placeholder.com/1200x800/3498db/FFFFFF?text=IMAGEM+PROJETO+2">
+    <section class="project-section" id="project2"
+        data-background="https://via.placeholder.com/1200x800/3498db/FFFFFF?text=IMAGEM+PROJETO+2">
         <div class="project-content">
             <h1>Game Interativo: Realidade Aumentada</h1>
-            <p>Criamos um jogo envolvente utilizando tecnologia de realidade aumentada para dispositivos móveis. Este projeto demonstrou nosso conhecimento em AR e nossa capacidade de inovar, proporcionando uma experiência de usuário imersiva e divertida.</p>
+            <p>Criamos um jogo envolvente utilizando tecnologia de realidade aumentada para dispositivos móveis. Este
+                projeto demonstrou nosso conhecimento em AR e nossa capacidade de inovar, proporcionando uma experiência
+                de usuário imersiva e divertida.</p>
             <a href="link-do-projeto2.html" class="project-cta">Ver Projeto</a>
         </div>
     </section>
 
-    <section class="project-section" id="project3" data-background="https://via.placeholder.com/1200x800/2ecc71/FFFFFF?text=IMAGEM+PROJETO+3">
+    <section class="project-section" id="project3"
+        data-background="https://via.placeholder.com/1200x800/2ecc71/FFFFFF?text=IMAGEM+PROJETO+3">
         <div class="project-content">
             <h1>Sistema IoT para Cidades Inteligentes</h1>
-            <p>Um sistema completo de monitoramento e análise de dados para infraestruturas urbanas, utilizando sensores IoT. Contribui para a otimização de recursos e melhoria da qualidade de vida nas cidades, um verdadeiro impacto social.</p>
+            <p>Um sistema completo de monitoramento e análise de dados para infraestruturas urbanas, utilizando sensores
+                IoT. Contribui para a otimização de recursos e melhoria da qualidade de vida nas cidades, um verdadeiro
+                impacto social.</p>
             <a href="link-do-projeto3.html" class="project-cta">Ver Projeto</a>
         </div>
     </section>
 
-    <section class="project-section" id="project4" data-background="https://via.placeholder.com/1200x800/f1c40f/333333?text=IMAGEM+PROJETO+4">
+    <section class="project-section" id="project4"
+        data-background="https://via.placeholder.com/1200x800/f1c40f/333333?text=IMAGEM+PROJETO+4">
         <div class="project-content">
             <h1>Plataforma de E-learning Dinâmica</h1>
-            <p>Desenvolvemos uma plataforma de educação online com recursos interativos, trilhas de aprendizado personalizadas e gamificação. Promove o acesso ao conhecimento de forma engajadora e eficaz para milhares de estudantes.</p>
+            <p>Desenvolvemos uma plataforma de educação online com recursos interativos, trilhas de aprendizado
+                personalizadas e gamificação. Promove o acesso ao conhecimento de forma engajadora e eficaz para
+                milhares de estudantes.</p>
             <a href="link-do-projeto4.html" class="project-cta">Ver Projeto</a>
         </div>
     </section>
 
     <script>
         // JavaScript para rolagem horizontal suave com a roda do mouse/trackpad
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const body = document.body;
             const projectSections = document.querySelectorAll('.project-section');
 
@@ -269,4 +326,5 @@
         });
     </script>
 </body>
+
 </html>
