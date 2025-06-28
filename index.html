@@ -10,6 +10,23 @@
         /* CSS Integrado */
 
         /* Estilos globais */
+        :root {
+            --primary-bg-color: #feebfb; /* Fundo claro principal */
+            --accent-color: #E91E63;     /* Rosa vibrante */
+            --text-color: #333;          /* Texto escuro padrão */
+            --light-text-color: #f8f8f8; /* Texto claro (para rodapés, headers escuros) */
+            --card-bg-color: rgba(255, 255, 255, 0.95); /* Fundo de cartões/seções semi-transparente */
+            --shadow-color: rgba(0, 0, 0, 0.15); /* Sombra padrão */
+            --input-border-color: #ccc;  /* Cor da borda de inputs */
+            
+            /* Cores para o tema claro (padrão) */
+            --theme-background: var(--primary-bg-color);
+            --theme-text: var(--text-color);
+            --theme-card-bg: var(--card-bg-color);
+            --theme-header-bg-initial: var(--card-bg-color); /* Branco/transparente */
+            --theme-header-text: var(--accent-color);
+        }
+
         @font-face {
             font-family: "fonte";
             src: url("https://db.onlinewebfonts.com/t/384a6031928e262848e4e7ef80037466.eot");
@@ -552,6 +569,9 @@
             background-image: url('/images/botao1certo.png');
             background-size: cover;
             background-position: center;
+            animation: buttonAnimation 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -15% cover 30%;
         }
 
         .projetos-link-wrapper:hover {
@@ -734,6 +754,17 @@
                 scale: 1;
             }
         }
+        @keyframes buttonAnimation{
+            0%{
+                translate: -50vw 0;
+            }
+            50%{
+                translate: 20vw 0;
+            }
+            100%{
+                translate: 0 0;
+            }
+        }
 
         /* Responsividade (Ajustes para as novas proporções) */
         @media (max-width: 768px) {
@@ -863,7 +894,7 @@
     </style>
 </head>
 
-<body>
+<body id="bodyIndex">
 
     <header>
         <div class="logo">
@@ -887,7 +918,7 @@
         <div class="hero-content">
             <h1>Criamos sistemas com impacto real</h1>
             <p>Se não te emociona, ainda não está pronto.</p>
-            <a href="#quem-somos" class="cta">Saiba Mais</a>
+            <a href="#quem-somos" class="cta" onclick="themeLogic()">Saiba Mais</a>
         </div>
     </section>
 
@@ -1013,6 +1044,8 @@
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav ul li a');
             const backToTopBtn = document.getElementById('backToTopBtn');
+            const themeLightRadio = document.getElementById('themeLight');
+            const themeDarkRadio = document.getElementById('themeDark');
 
             // --- CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
             const heroTitle = document.querySelector('#hero h1');
@@ -1072,7 +1105,17 @@
             }
             // --- FIM DO CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
 
-
+            // --- Função para aplicar o tema ---
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                    themeDarkRadio.checked = true;
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    themeLightRadio.checked = true;
+                }
+                localStorage.setItem('userTheme', theme); // Salva a preferência
+            }
             // Função para mudar o background do hero ao rolar
             window.addEventListener('scroll', function () {
                 if (heroSection) { // Verifica se heroSection existe
@@ -1161,6 +1204,7 @@
             }
         });
     </script>
+    <script src="theme.js"></script>
 </body>
 
 </html>
