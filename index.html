@@ -10,30 +10,6 @@
         /* CSS Integrado */
 
         /* Estilos globais */
-        :root {
-            --primary-bg-color: #feebfb;
-            /* Fundo claro principal */
-            --accent-color: #E91E63;
-            /* Rosa vibrante */
-            --text-color: #333;
-            /* Texto escuro padrão */
-            --light-text-color: #f8f8f8;
-            /* Texto claro (para rodapés, headers escuros) */
-            --card-bg-color: rgba(255, 255, 255, 0.95);
-            /* Fundo de cartões/seções semi-transparente */
-            --shadow-color: rgba(0, 0, 0, 0.15);
-            /* Sombra padrão */
-            --input-border-color: #ccc;
-            /* Cor da borda de inputs */
-
-            /* Cores para o tema claro (padrão) */
-            --theme-background: var(--primary-bg-color);
-            --theme-text: var(--text-color);
-            --theme-card-bg: var(--card-bg-color);
-            --theme-header-bg-initial: var(--card-bg-color);
-            /* Branco/transparente */
-            --theme-header-text: var(--accent-color);
-        }
 
         @font-face {
             font-family: "fonte";
@@ -50,7 +26,7 @@
         }
 
         body {
-            font-family: "fonte", sans-serif;
+            font-family: "fonte";
             /* Adicionado um fallback font-family */
             margin: 0;
             padding: 0;
@@ -100,7 +76,7 @@
 
         .loading-text {
             font-size: 1.5rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 500;
         }
 
@@ -148,7 +124,7 @@
         }
 
         .dark-mode header {
-            background-color: rgba(216, 169, 254, 0.6);
+            background-color: rgba(166, 120, 204, 0.8);
         }
 
         .logo {
@@ -179,6 +155,15 @@
             width: auto;
             /* Adicione uma transição para o tamanho da imagem da logo no hover */
             transition: transform 0.3s ease-in-out;
+        }
+        #imgLogoDark{
+            height: 0px;
+        }
+        .dark-mode #imgLogoDark{
+            height: 120px;
+        }
+        .dark-mode #imgLogo{
+            height: 0px;
         }
 
         /* Efeito no hover da imagem da logo */
@@ -376,6 +361,11 @@
             background-size: cover;
             background-position: center;
             color: #333;
+            transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
+        }
+        .dark-mode #quem-somos{
+            background-image: url('/images/fundo2Dark.png');
+            color: #f8f8f8;
         }
 
         .quem-somos-content {
@@ -444,6 +434,11 @@
             color: #333;
             /* Inverte a ordem dos itens para imagem à esquerda e texto à direita */
             flex-direction: row-reverse;
+            transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
+        }
+        .dark-mode #nossa-ideia{
+            background-image: url('/images/fundo3Dark.png');
+            color: #f8f8f8;
         }
 
         .nossa-ideia-content {
@@ -504,6 +499,9 @@
             background-color: #feebfb;
             text-align: center;
         }
+        .dark-mode .values-section{
+            background-color: #353535;
+        }
 
         .values-section h2 {
             font-size: 3rem;
@@ -515,7 +513,7 @@
             animation-range: cover -10% cover 30%;
         }
 
-        .values-grid {
+        .values-grid{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
@@ -530,6 +528,9 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
+        }
+        .dark-mode .value-card{
+            background-color: #55b5a8;
         }
 
         .value-card:hover {
@@ -603,6 +604,9 @@
             background-size: cover;
             background-position: center;
         }
+        .dark-mode #nossos-projetos{
+            background-image: url('/images/fundo2Dark.png');
+        }
 
         .projetos-link-wrapper {
             font-family: serif;
@@ -667,9 +671,10 @@
         }
 
         .participantes span {
+            font-family: serif;
             font-size: 1.4rem;
             color: #333;
-            font-weight: bold;
+            font-weight: bolder;
         }
 
         .participantes {
@@ -679,10 +684,19 @@
             animation: scrollAnimationEtSY 1ms ease-in-out;
             animation-timeline: view();
             animation-range: cover -15% cover 30%;
+            gap: 1rem;
         }
         .participante{
             display: flex;
             flex-direction: column;
+            /* border: solid 1px black; */
+            border-radius: 0.8rem;
+            padding-top: 0.5rem;
+            /* background-color: #ccc; */
+            transition-duration: 500ms;
+        }
+        .participante:hover{
+            scale: 1.2;
         }
 
         /* Footer */
@@ -964,6 +978,9 @@
             <a href="index.html">
                 <img src="/images/AuraLogo.png" alt="Aura" id="imgLogo">
             </a>
+            <a href="index.html">
+                <img src="/images/AuraLogoDark.png" alt="Aura" id="imgLogoDark">
+            </a>
             <div class="temas">
                 <a id="toggleDark" class="tema">🌙</a>
                 <a id="toggleLight" class="tema">☀️</a>
@@ -1119,7 +1136,7 @@
                     </div>
                     <div class="participante">
                         <img src="/images/Participantes/NCD4.png" alt="">
-                        <span>Nao sei</span>
+                        <span>Nicoly</span>
                     </div>
                 </div>
             </div>
