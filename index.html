@@ -11,19 +11,27 @@
 
         /* Estilos globais */
         :root {
-            --primary-bg-color: #feebfb; /* Fundo claro principal */
-            --accent-color: #E91E63;     /* Rosa vibrante */
-            --text-color: #333;          /* Texto escuro padrão */
-            --light-text-color: #f8f8f8; /* Texto claro (para rodapés, headers escuros) */
-            --card-bg-color: rgba(255, 255, 255, 0.95); /* Fundo de cartões/seções semi-transparente */
-            --shadow-color: rgba(0, 0, 0, 0.15); /* Sombra padrão */
-            --input-border-color: #ccc;  /* Cor da borda de inputs */
-            
+            --primary-bg-color: #feebfb;
+            /* Fundo claro principal */
+            --accent-color: #E91E63;
+            /* Rosa vibrante */
+            --text-color: #333;
+            /* Texto escuro padrão */
+            --light-text-color: #f8f8f8;
+            /* Texto claro (para rodapés, headers escuros) */
+            --card-bg-color: rgba(255, 255, 255, 0.95);
+            /* Fundo de cartões/seções semi-transparente */
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            /* Sombra padrão */
+            --input-border-color: #ccc;
+            /* Cor da borda de inputs */
+
             /* Cores para o tema claro (padrão) */
             --theme-background: var(--primary-bg-color);
             --theme-text: var(--text-color);
             --theme-card-bg: var(--card-bg-color);
-            --theme-header-bg-initial: var(--card-bg-color); /* Branco/transparente */
+            --theme-header-bg-initial: var(--card-bg-color);
+            /* Branco/transparente */
             --theme-header-text: var(--accent-color);
         }
 
@@ -139,6 +147,10 @@
             border-bottom: solid 2px #333;
         }
 
+        .dark-mode header {
+            background-color: rgba(216, 169, 254, 0.6);
+        }
+
         .logo {
             font-size: 2rem;
             font-weight: bold;
@@ -175,6 +187,19 @@
             /* Um pequeno zoom no hover */
         }
 
+        .temas {
+            gap: 1rem;
+            display: flex;
+        }
+
+        .tema {
+            display: block;
+            transition-duration: 700ms;
+        }
+
+        .tema:hover {
+            scale: 1.2;
+        }
 
         nav ul {
             list-style: none;
@@ -194,6 +219,10 @@
             padding: 8px 0;
         }
 
+        .dark-mode nav ul li a {
+            color: #f8f8f8;
+        }
+
         /* HOVER ESPECÍFICO PARA LINKS QUANDO O HEADER ESTÁ NO TOPO */
         nav ul li a:hover {
             color: #6FE6D7;
@@ -204,6 +233,10 @@
         header.scrolled nav ul li a {
             color: #333;
             /* Links brancos sobre o fundo escuro do header */
+        }
+
+        .dark-mode header.scrolled nav ul li a {
+            color: #f8f8f8;
         }
 
         /* HOVER ESPECÍFICO PARA LINKS QUANDO O HEADER ESTÁ ROLADO E ESCURO */
@@ -224,7 +257,7 @@
 
         /* Hero Section (Primeira Dobra) */
         #hero {
-            background-image: url('/images/Fundo1.png');
+            background-image: url('/images/fundo1.png');
             /* <-- COLOQUE A URL/CAMINHO DA SUA IMAGEM DE FUNDO AQUI */
             background-size: cover;
             background-position: center;
@@ -239,6 +272,11 @@
             position: relative;
             transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
             overflow: hidden;
+        }
+
+        body.dark-mode #hero {
+            background-image: url('/images/fundo1Dark.png');
+            color: #6FE6D7;
         }
 
         #hero.solid-bg {
@@ -266,8 +304,18 @@
             /* Permite que as letras quebrem a linha */
         }
 
+        .dark-mode .hero-content h1 {
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
         .hero-content p {
             color: #333;
+        }
+
+        .dark-mode .hero-content p {
+            color: #E91E63;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            font-weight: bold;
         }
 
         /* Estilos para as letras individuais do título do Hero */
@@ -324,7 +372,7 @@
             justify-content: center;
             align-items: center;
             gap: 6rem;
-            background-image: url('/images/fundoFinalFinal2.png');
+            background-image: url('/images/fundo2.png');
             background-size: cover;
             background-position: center;
             color: #333;
@@ -390,7 +438,7 @@
             align-items: center;
             gap: 6rem;
             /* Mesma lacuna */
-            background-image: url('/images/fundoFinal3.png');
+            background-image: url('/images/fundo3.png');
             background-size: cover;
             background-position: center;
             color: #333;
@@ -488,22 +536,26 @@
             transform: translateY(-10px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
-        .animatioStE-value{
+
+        .animatioStE-value {
             animation: scrollAnimationStE 1ms ease-in-out;
             animation-timeline: view();
             animation-range: cover -10% cover 30%;
         }
-        .animatioEtS-value{
+
+        .animatioEtS-value {
             animation: scrollAnimationEtS 1ms ease-in-out;
             animation-timeline: view();
             animation-range: cover -10% cover 30%;
         }
-        .animatioEtSY-value{
+
+        .animatioEtSY-value {
             animation: scrollAnimationEtSY 1ms ease-in-out;
             animation-timeline: view();
             animation-range: cover -10% cover 30%;
         }
-        .animatioStEY-value{
+
+        .animatioStEY-value {
             animation: scrollAnimationStEY 1ms ease-in-out;
             animation-timeline: view();
             animation-range: cover -10% cover 30%;
@@ -547,7 +599,7 @@
         }
 
         #nossos-projetos {
-            background-image: url('/images/fundoFinalFinal2.png');
+            background-image: url('/images/fundo2.png');
             background-size: cover;
             background-position: center;
         }
@@ -571,7 +623,7 @@
             background-position: center;
             animation: buttonAnimation 1ms ease-in-out;
             animation-timeline: view();
-            animation-range: cover -15% cover 30%;
+            animation-range: cover 0 cover 30%;
         }
 
         .projetos-link-wrapper:hover {
@@ -594,6 +646,9 @@
             border-radius: 0.8rem;
             margin-bottom: 60px;
             /* border: solid 1px white; */
+            animation: scrollAnimationEtSY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -15% cover 30%;
         }
 
         .participantes-title h2 {
@@ -603,23 +658,31 @@
             color: white;
         }
 
-        .participantes01 {
+        .participantes img {
+            margin-inline: 2rem;
+            border-radius: 20%;
+            /* Tamanho da foto do membro */
+            width: 140px;
+            height: 170px;
+        }
+
+        .participantes span {
+            font-size: 1.4rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .participantes {
             display: flex;
             justify-content: center;
+            margin-bottom: 2rem;
+            animation: scrollAnimationEtSY 1ms ease-in-out;
+            animation-timeline: view();
+            animation-range: cover -15% cover 30%;
         }
-
-        .participantes01 img {
-            margin-inline: 100px;
-            border-radius: 100%;
-            width: 90px;
-            /* Tamanho da foto do membro */
-            height: 90px;
-        }
-
-        .participantes01 span {
-            display: block;
-            font-size: 0.9rem;
-            color: #333;
+        .participante{
+            display: flex;
+            flex-direction: column;
         }
 
         /* Footer */
@@ -754,14 +817,14 @@
                 scale: 1;
             }
         }
-        @keyframes buttonAnimation{
-            0%{
-                translate: -50vw 0;
+
+        @keyframes buttonAnimation {
+            from{
+                opacity: 0;
+                translate: 0 10vh;
             }
-            50%{
-                translate: 20vw 0;
-            }
-            100%{
+            to{
+                opacity: 1;
                 translate: 0 0;
             }
         }
@@ -901,6 +964,10 @@
             <a href="index.html">
                 <img src="/images/AuraLogo.png" alt="Aura" id="imgLogo">
             </a>
+            <div class="temas">
+                <a id="toggleDark" class="tema">🌙</a>
+                <a id="toggleLight" class="tema">☀️</a>
+            </div>
         </div>
         <nav>
             <ul>
@@ -918,7 +985,7 @@
         <div class="hero-content">
             <h1>Criamos sistemas com impacto real</h1>
             <p>Se não te emociona, ainda não está pronto.</p>
-            <a href="#quem-somos" class="cta" onclick="themeLogic()">Saiba Mais</a>
+            <a href="#quem-somos" class="cta">Saiba Mais</a>
         </div>
     </section>
 
@@ -1006,24 +1073,54 @@
             <div class="participantes-title">
                 <h2>Participantes</h2>
             </div>
-            <div class="participantes01">
-                <div class="participante">
-                    <img src="/images/EnzoFoto.png" alt="parti1">
-                    <span>Enzo Bueno</span>
+            <div class="participantes-content">
+                <div class="participantes">
+                    <div class="participante">
+                        <img src="/images/Participantes/LuisaVeraDirecao.png" alt="">
+                        <span>Luisa Vera</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/LuisaVenturiDirecao.png" alt="">
+                        <span>Luisa Venturi</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/GabyArteCD1.png" alt="">
+                        <span>Gabrielly</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/JoaoSardelaMecCD1.png" alt="">
+                        <span>João Sardela</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/GuilhermeMecCD2.png" alt="">
+                        <span>Guilerme</span>
+                    </div>
                 </div>
-                <div class="participante">
-                    <img src="" alt="part2">
-                </div>
-                <div class="participante">
-                    <img src="/images/JoaoVictorFoto.png" alt="part3">
-                    <span>Joao Victor</span>
-                </div>
-                <div class="participante">
-                    <img src="" alt="part4">
-                </div>
-                <div class="participante">
-                    <img src="/images/JoaoSardelaFoto.png" alt="part5">
-                    <span>Joao Sardela</span>
+                <div class="participantes">
+                    <div class="participante">
+                        <img src="/images/Participantes/MariaArteCD2.png" alt="">
+                        <span>Maria</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/AnaArteCD3.png" alt="">
+                        <span>Ana</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/EnzoMecCD3.png" alt="">
+                        <span>Enzo</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/RafaelMecCD4.png" alt="">
+                        <span>Rafael</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/JoaoVictorArteCD4.png" alt="">
+                        <span>Joao Victor</span>
+                    </div>
+                    <div class="participante">
+                        <img src="/images/Participantes/NCD4.png" alt="">
+                        <span>Nao sei</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1035,8 +1132,10 @@
         </footer>
     </div>
 
+
     <button id="backToTopBtn" title="Voltar ao Topo">&#x2191;</button>
 
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const heroSection = document.getElementById('hero');
@@ -1044,8 +1143,6 @@
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav ul li a');
             const backToTopBtn = document.getElementById('backToTopBtn');
-            const themeLightRadio = document.getElementById('themeLight');
-            const themeDarkRadio = document.getElementById('themeDark');
 
             // --- CÓDIGO DA ANIMAÇÃO DE LETRAS CORRIGIDO ---
             const heroTitle = document.querySelector('#hero h1');

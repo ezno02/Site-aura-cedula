@@ -20,7 +20,7 @@
             padding: 0;
             background-color: #feebfb; /* Cor de fundo padrão para o resto do site */
             line-height: 1.6;
-            background-image: url('/images/fundoFinalFinalFinal1.png');
+            background-image: url('/images/fundo1.png');
             background-size: cover;
             background-position: center;
         }
@@ -341,8 +341,8 @@
             <ul>
                 <li><a href="index.html#hero">Home</a></li>
                 <li><a href="projetos.html">Projetos</a></li>
-                <li><a href="#competicoes-hero" class="active">Competições</a></li>
                 <li><a href="contato.html">Contato</a></li>
+                <li><a href="configuracoes.html">Configurações</a></li>
             </ul>
         </nav>
     </header>
@@ -362,15 +362,15 @@
                     <h3>Nossa Equipe</h3>
                     <div class="membros">
                         <div class="membro">
-                            <img src="/images/Joao2.png" alt="Membro João">
+                            <img src="/images/Participantes/JoaoSardelaMecCD1.png" alt="Membro João">
                             <span>João Sardela</span>
                         </div>
                         <div class="membro">
-                            <img src="/images/EnzoFoto.png" alt="Membro Enzo">
+                            <img src="/images/Participantes/EnzoMecCD3.png" alt="Membro Enzo">
                             <span>Enzo Bueno</span>
                         </div>
                         <div class="membro">
-                            <img src="/images/JoaoVictorFoto.png" alt="Membro João">
+                            <img src="/images/Participantes/JoaoVictorArteCD4.png" alt="Membro João">
                             <span>Joao Victor</span>
                         </div>
                     </div>
@@ -456,17 +456,6 @@
                     header.classList.remove('scrolled');
                 }
             });
-
-            // Lógica para manter o link "Competições" ativo (já que esta é a página de competições)
-            // Você pode remover a lógica de detecção de seção se não houver rolagem para diferentes seções aqui.
-            // Para manter o link de "Competições" sempre ativo nesta página, podemos fazer assim:
-            navLinks.forEach(link => {
-                link.classList.remove('active'); // Remove de todos primeiro
-                if (link.getAttribute('href').includes('competicoes.html')) {
-                    link.classList.add('active'); // Adiciona apenas ao link desta página
-                }
-            });
-
             // Garante que o header comece transparente se a página for carregada no topo
             if (window.scrollY === 0) {
                 header.classList.remove('scrolled');
